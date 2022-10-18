@@ -1,0 +1,6 @@
+replicaCount: 1
+fullnameOverride: "webserver"
+fullnamePrefix: "casa-"
+fullnameSuffix: "-cert"
+service:
+  type: LoadBalancer
