@@ -1,0 +1,79 @@
+postgres-operator:
+  configKubernetes:
+    enable_pod_antiaffinity: true
+
+postgres:
+  enabled: true
+  version: "13"
+  parameters:
+    password_encryption: "md5" #md5 o scram-sha-256
+    shared_buffers: "32MB"
+    max_connections: "1000"
+    log_statement: "all"
+  volumeSize: "20G"
+  storageClass: "gp2"
+  # Inserire i nomi degli utenti, eventualmente indicare il ruolo.
+  users: {}
+  # userbe: []
+  # wso2user: []
+
+  # Inserire i nomi dei database seguiti da ":" e l'owner del database
+  databases: {}
+  # userbe: userbe
+  # wso2_shared_db: wso2user
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      cpu: 500m
+      memory: 500Mi
+  # Impostazioni relative all'initdb
+  initdb:
+    encoding: "" #default UTF-8
+    locale: "" #default en_US.UTF-8
+
+pgpool:
+  enabled: false
+  replicaCount: 3
+
+  postgresConfig:
+    encryptmethod: md5 #md5 o scram-sha-256
+    #Elencare username postgres
+    username:
+      - postgres
+  tls:
+    enabled: false
+
+  externalFqdn:
+    enabled: false
+    fqdn:
+
+  resources:
+    {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  extraConf:
+    sr_check_period: 0
+    health_check_period: 0
+    backend_clustering_mode: "streaming_replication"
+    num_init_children: 32
+    max_pool: 4
+    child_life_time: 300
+    child_max_connections: 0
+    connection_life_time: 0
+    client_idle_limit: 0
+    connection_cache: "off"
+    load_balance_mode: "on"
+    ssl: "off"
+    enable_pool_hba: "on"
+    failover_on_backend_error: "off"
+    log_min_messages: "warning"
+
+  monitoring:
+    enabled: false
