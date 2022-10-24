@@ -20,3 +20,5 @@ spec:
     bar: {}
   postgresql:
     version: "12"
+    parameters:
+      max_connections: 1000
