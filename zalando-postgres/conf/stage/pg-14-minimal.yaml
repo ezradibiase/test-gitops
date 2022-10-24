@@ -1,0 +1,32 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: zambot-pg14cl-stage
+  namespace: dbs-stage
+spec:
+  dockerImage: ezradibiase/spilo-emix:5.4
+  teamId: "zambot"
+  volume:
+    size: 1Gi
+  numberOfInstances: 3
+  users:
+    zalando:  # database owner
+    - superuser
+    - createdb
+    ezra: []
+  databases:
+    foo: zalando  # dbname: owner
+    log: ezra
+    scarpa: ezra
+  preparedDatabases:
+    bar: {}
+  postgresql:
+    version: "14"
+    parameters:
+      max_connections: "1000"
+  patroni:
+    initdb:
+      encoding: "UTF8"
+      locale: "it_IT.UTF-8"
+      pg_hba:
+        - host all all 0.0.0.0/0 md5
