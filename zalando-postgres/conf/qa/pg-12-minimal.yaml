@@ -13,9 +13,11 @@ spec:
     - superuser
     - createdb
     zerbino: []  # role for application foo
+    ezra: []
   databases:
     foo: zalando  # dbname: owner
     scarpa: zerbino
+    log: ezra
   preparedDatabases:
     bar: {}
   postgresql:
