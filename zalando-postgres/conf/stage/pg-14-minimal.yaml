@@ -27,6 +27,6 @@ spec:
   patroni:
     initdb:
       encoding: "UTF8"
-      locale: "it_IT.UTF-8"
+      locale: "en_US.UTF-8"
     pg_hba:
       - host all all 0.0.0.0/0 md5
