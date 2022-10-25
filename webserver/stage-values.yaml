@@ -1,5 +1,5 @@
 replicaCount: 1
-fullnameOverride: "webserver"
+fullnameOverride: "webserver-stage"
 fullnamePrefix: "casa-"
 fullnameSuffix: "-cert"
 service:
